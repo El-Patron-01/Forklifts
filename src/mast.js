@@ -6,20 +6,11 @@ export default class Mast extends React.Component {
         mast: 0
     }
 
-    mastChoosing = () => {
-        var e = document.getElementById("mastChoose");
-        var choosedMast = e.options[e.selectedIndex].value;
-        console.log(choosedMast)
-        if (choosedMast === '2') {
-            this.setState({
-                mast: this.state.mast + 300
-            })
-  
-        } else if (choosedMast === '3') {
-            this.setState({
-                mast: this.state.mast + 500
-            })
-        }
+    mastChoosing = (e) => {
+        e.preventDefault();
+        this.setState({
+            mast: e.target.value
+        })
         console.log(this.state.mast)
         this.props.mastCalculate(this.state.mast)
     }
@@ -28,9 +19,9 @@ export default class Mast extends React.Component {
         return (
             <select id='mastChoose' onChange={this.mastChoosing}>
                 <option>Стрела</option>
-                <option value='1'>Дуплекс без свободного ход</option>
-                <option value='2'>Дуплекс со свободным ходом</option>
-                <option value='3'>Триплекс со свободным ходом</option>
+                <option value='0'>Дуплекс без свободного ход</option>
+                <option value='300'>Дуплекс со свободным ходом</option>
+                <option value='500'>Триплекс со свободным ходом</option>
             </select>
         )
     }
